@@ -231,7 +231,7 @@ locations.forEach( (element) =>{
          var marker = new google.maps.Marker({
            position: latlng,
            title: title,
-           animation: google.maps.Animation.BOUNCE,
+           animation: google.maps.Animation.drop,
            id: i,
            map:gameMap,
            icon: questionMarker
