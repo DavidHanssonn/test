@@ -4,6 +4,15 @@ var pointMarker = new Array()
 var pointMarkerImage = new Array()
 var quizzes = new Array()
 
+// circle around marker
+function arePointsNear(checkPoint, centerPoint, km) {
+  var ky = 40000 / 360;
+  var kx = Math.cos(Math.PI * centerPoint.lat / 180.0) * ky;
+  var dx = Math.abs(centerPoint.lng - checkPoint.lng) * kx;
+  var dy = Math.abs(centerPoint.lat - checkPoint.lat) * ky;
+  return Math.sqrt(dx * dx + dy * dy) <= km;
+};
+
 let gameMapCenter
 var options = {
   enableHighAccuracy: true,
@@ -147,35 +156,7 @@ function error(err) {
   console.warn('ERROR(' + err.code + '): ' + err.message)
 }
 
-function loadMapMarkers() {
-  //create array to store a set of location
-  var collection = new Array()
 
-  //a set of locations stored in array
-  collection[1] = new google.maps.LatLng(59.3134, 18.1108)
-  collection[2] = new google.maps.LatLng(59.3147, 18.1093)
-  collection[3] = new google.maps.LatLng(59.3139, 18.1061)
-  collection[4] = new google.maps.LatLng(59.3124, 18.1065)
-  collection[5] = new google.maps.LatLng(59.3142, 18.1106)
-  collection[6] = new google.maps.LatLng(59.3142,  18.1106)
-
-
-  var pointMarkerImage = new Array() //store image of marker in array
-  //var pointMarker = new Array()//store marker in array
-
-  //create number of markers based on collection.length
-  for (var i = 0; i < collection.length; i++) {
-    pointMarkerImage[i] = new google.maps.MarkerImage('icon2.png')
-    pointMarker[i] = new google.maps.Marker({
-      position: collection[i],
-      map: gameMap,
-      icon: pointMarkerImage[i],
-      animation: google.maps.Animation.BOUNCE,
-      title: "Fråga " + i,
-      my_id: i
-    })
-  }
-}
 
 function setPlayerMarker(gameMapCenter) {
   id = navigator.geolocation.watchPosition(setLocation, error, options)
@@ -200,84 +181,100 @@ function setLocation(pos) { // watchPosition callback
       //All markers from the list only cordinates lat lng
       var allMarkers = [];
 
-	 
+// These are the real estate listings that will be shown to the user.
+  // Normally we'd have these in a database instead.
+  var locations = [
+[59.3134, 18.1108], 
+[59.313303, 18.110104], 
+[59.3139, 18.1061],
+[59.3124, 18.1065],
+[59.3142, 18.1106] ,
+[59.3123, 18.1079]   
+];
+locations.forEach( (element) =>{
+  //console.log({lat: element[0], lng: element[1]});
+});
 
+  infoWindow = new google.maps.InfoWindow;
+  
+ var userlocation = null;
 
-        // These are the real estate listings that will be shown to the user.
-        // Normally we'd have these in a database instead.
-        var locations = [
-          {title: 'Skolan 607', location: {lat: 59.3134, lng:18.1108}},
-          {title: 'Elite Hotel Marina Tower', location: {lat: 59.3147, lng: 18.1093}},
-          {title: 'Boule & Berså', location: {lat: 59.3139, lng: 18.1061}},
-          {title: 'Pizzerian på andra sidan bron', location: {lat: 59.3124, lng: 18.1065}},
-          {title: 'Gula huset, Manngrynskvarnen', location: {lat: 59.3142, lng: 18.1106}},
-          {title: 'Henriksdals Station, mot Slussen', location: {lat: 59.3123, lng: 18.1079}}
-        ];
+  var id;
+  if (navigator.geolocation) {
+    id = navigator.geolocation.watchPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+        EnableHighAccuracy: true,
+        timeout: 3000,
+        maximumAge: 0,
+        distanceFilter: 1,
+      };
 
+ 
 
+        //var markerobjects = [];
+      //foreach loop will check in which marker and convert into object. 
+      //its the same array as location but with objects in it. 
+      //console.log(locations);
+      locations.forEach( (element) =>{
+        var latlng = {lat: element[0], lng: element[1]};        
+        //markerobjects.push(latlng);        
+        n = arePointsNear(pos, latlng, 0.02); 
+        
 
-        // The following group uses the location array to create an array of markers on initialize.
-        for (var i = 0; i < locations.length; i++) {
-          // Get the position from the location array.
-          var position = locations[i].location;
-          allMarkers.push(position);
-          var title = locations[i].title;
-          // Create a marker per location, and put into markers array.
-           var marker = new google.maps.Marker({
-            position: position,
-            title: title,
-            animation: google.maps.Animation.DROP,
-            id: i
-          });
-          // Push the marker to our array of markers.
-          markers.push(marker);
-          // Create an onclick event to open an infowindow at each marker.
-          marker.addListener('click', function() {
-            populateInfoWindow(this, infoWindow);
-          });
+        //for (var i = 0; i < locations.length; i++) {
+          //This will check how many markers are there in location array
+          //latlng = {lat: locations[i][0],  lng: locations[i][1]};
+
+         var questionMarker = 'icon2.png';
+         var marker = new google.maps.Marker({
+           position: latlng,
+           title: title,
+           animation: google.maps.Animation.BOUNCE,
+           id: i,
+           map:gameMap,
+           icon: questionMarker
+         });
+
+       //}
+
+        if (n === true) { 
+          //Because markerobjects and locations are the same we will remove marker then from location array. 
+          var currentMarker = latlng;
+          console.log(currentMarker);
+          // console.log(Number(latlng.lat));
+          
+          var match = locations.indexOf(currentMarker);   
+          console.log(match);
+          $('#\\#myModal').modal('show');
+          //var splicedMarker = locations.splice(match, 1);     
+          //console.log(locations); 
+          
+       } else {
+          //console.log('Your position doesnt match');
+          // break;
         }
+      });
 
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
 
-        if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
 
+  // The following group uses the location array to create an array of markers on initialize.
+  for (var i = 0; i < locations.length; i++) {
+    // Get the position from the location array.
+    var position = locations[i].location;
+    console.log(position);
+    var title = locations[i].title;
 
+ }
 
-          // code belo will match the usersposition with checkpoint in one array
-          userPosition.push(pos);
-          console.log(userPosition);
-          // +() changes string into number
-          for (var i = 0; i < userPosition.length; i++){
-            userPosition[i].lat = +(userPosition[i].lat.toFixed(4));
-            userPosition[i].lng = +(userPosition[i].lng.toFixed(4));
-
-          }
-
-          //console.log(allMarkers);
-          if((userPosition[0].lng && userPosition[0].lat) === (allMarkers[0].lng && allMarkers[0].lat))   {
-              $('#\\#myModal').modal('show');
-          } else {
-            console.log('YOU ARE NOT IN POSISTION TO GET QUESTION');
-          }
-
-          for(var i=0; i < allMarkers.length; i++) {
-          var x = allMarkers[i].lat.toFixed(4);
-          var y = allMarkers[i].lng.toFixed(4);
-          console.log(x, y);
-        }
-        // below code with show current location of user
-          infoWindow.setPosition(pos);
-          infoWindow.setContent('Location found.');
-          infoWindow.open(map);
-          map.setCenter(pos);
-        }, function() {
-          handleLocationError(true, infoWindow, map.getCenter());
-        });
-		}
 	function myFunction() {
     alert("Right answer");
 }
