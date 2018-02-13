@@ -220,7 +220,7 @@ locations.forEach( (element) =>{
       locations.forEach( (element) =>{
         var latlng = {lat: element[0], lng: element[1]};        
         //markerobjects.push(latlng);        
-        n = arePointsNear(pos, latlng, 0.02); 
+        n = arePointsNear(pos, latlng, 0.1); 
         
 
         //for (var i = 0; i < locations.length; i++) {
