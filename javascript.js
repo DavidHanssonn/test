@@ -185,7 +185,7 @@ function setLocation(pos) { // watchPosition callback
   // Normally we'd have these in a database instead.
   var locations = [
 [59.3134, 18.1108], 
-/*[59.313303, 18.110104], */
+[59.312936, 18.109755], 
 [59.3139, 18.1061],
 [59.3124, 18.1065],
 [59.3142, 18.1106] ,
