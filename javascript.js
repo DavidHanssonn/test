@@ -245,11 +245,11 @@ locations.forEach( (element) =>{
           console.log(currentMarker);
           // console.log(Number(latlng.lat));
           
-          var match = locations.indexOf(currentMarker);   
+        /*  var match = locations.indexOf(currentMarker);   
           console.log(match);
           $('#\\#myModal').modal('show');
           //var splicedMarker = locations.splice(match, 1);     
-          //console.log(locations); 
+          //console.log(locations); */
           
        } else {
           //console.log('Your position doesnt match');
@@ -455,3 +455,8 @@ function arcTween(b) {
   };
 }
 		
+		function hej(){
+			$('#\\#myModal').modal('show');
+			
+			
+		}

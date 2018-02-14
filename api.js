@@ -608,7 +608,7 @@ for (i in questions.results) {
  $("#scramble-buttons").html($("#scramble-buttons").children().sort(function() { return 0.5 - Math.random() }));
 });
   document.getElementById("demo").innerHTML = x;
-  document.getElementById("test").innerHTML = answers[0];
+  document.getElementById("test").innerHTML = answers[0]
   document.getElementById("test1").innerHTML = answers[1];
   document.getElementById("test2").innerHTML = answers[2];
   document.getElementById("test3").innerHTML = answers[3];
