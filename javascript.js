@@ -185,7 +185,7 @@ function setLocation(pos) { // watchPosition callback
   // Normally we'd have these in a database instead.
   var locations = [
 [59.3134, 18.1108], 
-/*[59.312936, 18.109755], */
+[59.312936, 18.109755],
 [59.3139, 18.1061],
 [59.3124, 18.1065],
 [59.3142, 18.1106] ,
@@ -245,15 +245,33 @@ locations.forEach( (element) =>{
           console.log(currentMarker);
           // console.log(Number(latlng.lat));
           
-        /*  var match = locations.indexOf(currentMarker);   
+         var match = locations.indexOf(currentMarker);   
           console.log(match);
-          $('#\\#myModal').modal('show');
+                        $(document).ready(function(){  
+    $('a.btn.btn-primary.knapp').text('Answer Question');
+	document.getElementById("myButton").style.background='#22db22';
+
+document.getElementById('myButton').onclick = function(){
+   $('#\\#myModal').modal('show');
+
+
+}
+
+	
+});    
           //var splicedMarker = locations.splice(match, 1);     
-          //console.log(locations); */
+          //console.log(locations); 
           
        } else {
-          //console.log('Your position doesnt match');
-          // break;
+		                        $(document).ready(function(){  
+    $('a.btn.btn-primary.knapp').text('Not avalible');
+	document.getElementById("myButton").style.background='red';
+	document.getElementById('myButton').onclick = function(){
+    alert("Wrong position");
+
+
+}
+});  
         }
       });
 
@@ -275,16 +293,20 @@ locations.forEach( (element) =>{
 
  }
 
-	function myFunction() {
-    alert("Right answer");
-}
+
 $('button1').on('click', function() {
     $(this).prop('disabled', true);
 });
 
    setTimeout(function(){
-     $('#\\#myModal').modal('hide')
+     $('#\\#myModal').modal('hide');
+	 $('#\\#myModal').on('hidden.bs.modal', function (e) {           
+            location.reload();
+            $('#\\#myModal').show();
+        })
+	 
      }, 16000);
+	 
  
       jQuery('.button1').click(function() {
 
@@ -311,7 +333,13 @@ function DisableButtons()
 
 function correct() {
     document.getElementById("test1").innerHTML = "Correct";
+	$('#\\#myModal').on('hidden.bs.modal', function (e) {           
+            location.reload();
+            $('#\\#myModal').show();
+        })
 	  setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
+	  
+	  
 	
 }
 function incorrect1() {
@@ -454,9 +482,4 @@ function arcTween(b) {
     return arc(i(t));
   };
 }
-		
-		function hej(){
-			$('#\\#myModal').modal('show');
-			
-			
-		}
+
