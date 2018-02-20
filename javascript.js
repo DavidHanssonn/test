@@ -255,8 +255,11 @@ locations.forEach( (element) =>{
 document.getElementById('myButton').onclick = function(){
    $('#\\#myModal').modal('show');
     setTimeout(function(){
+		$('#\\#myModal').load(location.href,"");
+
        $('#\\#myModal').modal('hide');
-    }, 15000);
+	   
+    }, 1000);
    
 
 
