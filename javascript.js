@@ -250,9 +250,14 @@ locations.forEach( (element) =>{
                         $(document).ready(function(){  
     $('a.btn.btn-primary.knapp').text('Answer Question');
 	document.getElementById("myButton").style.background='#22db22';
+	
 
 document.getElementById('myButton').onclick = function(){
    $('#\\#myModal').modal('show');
+    setTimeout(function(){
+       $('#\\#myModal').modal('hide');
+    }, 15000);
+   
 
 
 }
@@ -298,15 +303,6 @@ $('button1').on('click', function() {
     $(this).prop('disabled', true);
 });
 
-   setTimeout(function(){
-     $('#\\#myModal').modal('hide');
-	 $('#\\#myModal').on('hidden.bs.modal', function (e) {           
-            location.reload();
-            $('#\\#myModal').show();
-        })
-	 
-     }, 16000);
-	 
  
       jQuery('.button1').click(function() {
 
@@ -483,3 +479,17 @@ function arcTween(b) {
   };
 }
 
+$(".startclock").click(function(){
+  var counter = 15;
+  setInterval(function() {
+    counter--;
+    if (counter >= 0) {
+      span = document.getElementById("count");
+      span.innerHTML = counter;
+    }
+    if (counter === 0) {
+        clearInterval(counter);
+    }
+  }, 1000);
+    
+});
