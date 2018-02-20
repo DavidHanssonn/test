@@ -224,3 +224,21 @@ color:white !important;
 	
 	
 }
+
+.try {
+	position:absolute;
+	font-size:20px;
+	color:white;
+	bottom:10px;
+	left:20px;
+	
+	
+	
+}
+output#counter{
+	position:absolute;
+	font-size:20px;
+	color:white;
+	bottom:20px;
+	left:10px;
+}

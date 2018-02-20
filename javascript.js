@@ -255,11 +255,15 @@ locations.forEach( (element) =>{
 document.getElementById('myButton').onclick = function(){
    $('#\\#myModal').modal('show');
     setTimeout(function(){
-		$('#\\#myModal').load(location.href,"");
-
-       $('#\\#myModal').modal('hide');
+    $('#\\#myModal').modal('hide');
+	$('#\\#myModal').load(location.href,"");
+	$('#\\#myModal').load(location.href,"");
+	$('#\\#myModal').load(location.href,"");
+	$('#\\#myModal').load(location.href,"");
+	
 	   
-    }, 1000);
+    }, 6000);
+	
    
 
 
@@ -332,10 +336,7 @@ function DisableButtons()
 
 function correct() {
     document.getElementById("test1").innerHTML = "Correct";
-	$('#\\#myModal').on('hidden.bs.modal', function (e) {           
-            location.reload();
-            $('#\\#myModal').show();
-        })
+	
 	  setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
 	  
 	  
@@ -343,34 +344,22 @@ function correct() {
 }
 function incorrect1() {
     document.getElementById("test").innerHTML = "Incorrect";
-	$('#\\#myModal').on('hidden.bs.modal', function (e) {           
-            location.reload();
-            $('#\\#myModal').show();
-        })
 	  setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
 	
 }
 function incorrect2() {
     document.getElementById("test2").innerHTML = "Incorrect";
-	$('#\\#myModal').on('hidden.bs.modal', function (e) {           
-            location.reload();
-            $('#\\#myModal').show();
-        })
 	  setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
 	
 }
 function incorrect3() {
     document.getElementById("test3").innerHTML = "Incorrect";
-	$('#\\#myModal').on('hidden.bs.modal', function (e) {           
-            location.reload();
-            $('#\\#myModal').show();
-        })
 	  setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
 	
 }
 
 $(".startclock").click(function(){
-  var counter = 15;
+  var counter = 6;
   setInterval(function() {
     counter--;
     if (counter >= 0) {
@@ -383,3 +372,13 @@ $(".startclock").click(function(){
   }, 1000);
     
 });
+
+count = 0
+counter= function(){
+var counter =
+document.getElementById("counter");
+counter.innerHTML = ++ count;
+  }
+  
+  
+  
