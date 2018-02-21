@@ -256,10 +256,6 @@ document.getElementById('myButton').onclick = function(){
    $('#\\#myModal').modal('show');
     setTimeout(function(){
     $('#\\#myModal').modal('hide');
-	$('#\\#myModal').load(location.href,"");
-	$('#\\#myModal').load(location.href,"");
-	$('#\\#myModal').load(location.href,"");
-	$('#\\#myModal').load(location.href,"");
 	
 	   
     }, 6000);
@@ -354,7 +350,7 @@ function incorrect2() {
 }
 function incorrect3() {
     document.getElementById("test3").innerHTML = "Incorrect";
-	  setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
+	  setTimeout(function(){ $('#\\#myModal').modal('hide'); }, 1000);
 	
 }
 
@@ -380,5 +376,26 @@ document.getElementById("counter");
 counter.innerHTML = ++ count;
   }
   
+    var fewSeconds = 7;
+$('#myButton').click(function(){
+    // Ajax request
+    var btn = $(this);
+    btn.prop('disabled', true);
+    setTimeout(function(){
+        btn.prop('disabled', false);
+    }, fewSeconds*1000);
+});
   
   
+
+  
+    
+document.getElementById("myButton").addEventListener("click", myFunction);
+function myFunction (){
+setTimeout(function(){  
+ $('#\\#myModal').modal('hide');
+$('#quiz').load(location.href,"");
+
+
+ }, 8000);
+}
