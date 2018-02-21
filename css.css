@@ -79,6 +79,7 @@ h4 {
   margin-top: 0;
 }
 
+
 .btn {
   width: calc(50% - 20px);
   margin: 5px;
@@ -108,16 +109,7 @@ h4 {
  outline:none;
 
 }	
-.wrong-answer{ 
-  background:	red !important;
-  border: solid 2px red!important;
-  outline: none;
-}
-.right-answer{ 
-  background:	#7FFF00 !important;
-  border: solid 2px #7FFF00 !important;
-  outline: none;
-}
+
 .button1 {
      width: calc(50% - 20px);
 	 color:white;
@@ -149,6 +141,17 @@ h4 {
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
 	outline: none;
+}
+
+.wrong-answer{ 
+  background:	red !important;
+  border: solid 2px red!important;
+  outline: none;
+}
+.right-answer{ 
+  background:	#7FFF00 !important;
+  border: solid 2px #7FFF00 !important;
+  outline: none;
 }
 
 .modal-content {

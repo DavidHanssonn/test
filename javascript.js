@@ -253,14 +253,14 @@ locations.forEach( (element) =>{
 	
 
 document.getElementById('myButton').onclick = function(){
-   $('#\\#myModal').modal('show');
+   $('#\\#myModal').modal('show');/*
     setTimeout(function(){
     $('#\\#myModal').modal('hide');
 	
 	   
     }, 6000);
 	
-   
+  */
 
 
 }
@@ -330,10 +330,20 @@ function DisableButtons()
 	$(".button12").attr("disabled", true);
 }
 
+document.getElementById("myButton").addEventListener("click", function(){
+ $(".button1").attr("disabled", false);
+	$(".button12").attr("disabled", false);
+	  jQuery('.button12').removeClass('right-answer');
+	    jQuery('.button1').removeClass('wrong-answer');
+});
+
+
+
+
+
 function correct() {
     document.getElementById("test1").innerHTML = "Correct";
-	
-	  setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
+	 setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
 	  
 	  
 	
@@ -387,9 +397,10 @@ $('#myButton').click(function(){
 });
   
   
+  
 
   
-    
+/*    
 document.getElementById("myButton").addEventListener("click", myFunction);
 function myFunction (){
 setTimeout(function(){  
@@ -399,3 +410,4 @@ $('#quiz').load(location.href,"");
 
  }, 8000);
 }
+*/
