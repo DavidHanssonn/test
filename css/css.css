@@ -184,64 +184,28 @@ color:white !important;
 
 }
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
-
-.countdown {
-  margin: 0 auto;
-  font-size:60px;
-  position:relative;
-      transform: scale(0.3);
-	  font-size:100px;
-	  width:0px;
-	  height:0px;
-	  border:1px solid red;
-	  top:-25px;
-	  right:67px;
-}
-
-.path--background {
-  fill: transparent;
-  stroke: #fff;
-  stroke-width: 0px;
-}
-
-.pulse {
-  fill: red !important;
-}
-
-.path--foreground {
-  fill: #eee;
-  stroke: #eee;
-  stroke-width: 2px;
-}
-
-.label {
-  font: 90px "Open Sans";
-  font-weight: 900;
-  text-anchor: middle;
-  fill: rgb(255, 255, 255);
-}
 #count {
 	font-size:30px;
-	position:relative;
-	
-	
+	position:relative;	
+}
+#checkpoints{
+	color:white;
 }
 
-.try {
+.correct_answers {
 	position:absolute;
 	font-size:20px;
-	color:white;
-	bottom:10px;
-	left:20px;
-	
-	
-	
+	color:#fff;
+	bottom:20px;
+	left:10px;
+	font-family: "Times New Roman", Times, serif;
 }
+
 output#counter{
 	position:absolute;
 	font-size:20px;
-	color:white;
-	bottom:20px;
-	left:10px;
+	color:#FFFF;
+	bottom:30px;
+	left:0px;
+	font-family: "Times New Roman", Times, serif;
 }

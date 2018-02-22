@@ -1,9 +1,3 @@
-//Create the variables that will be used within the map configuration options.
-//The latitude and longitude of the center of the map.
-var pointMarker = new Array()
-var pointMarkerImage = new Array()
-var quizzes = new Array()
-
 // circle around marker
 function arePointsNear(checkPoint, centerPoint, km) {
   var ky = 40000 / 360;
@@ -156,14 +150,12 @@ function error(err) {
   console.warn('ERROR(' + err.code + '): ' + err.message)
 }
 
-
-
 function setPlayerMarker(gameMapCenter) {
   id = navigator.geolocation.watchPosition(setLocation, error, options)
   playerMarker = new google.maps.Marker({
     position: gameMapCenter,
     map: gameMap,
-    icon: 'icon1.png'
+    icon: 'img/icon1.png'
   })
   loadMapMarkers()
 }
@@ -194,10 +186,8 @@ function setLocation(pos) { // watchPosition callback
 locations.forEach( (element) =>{
   //console.log({lat: element[0], lng: element[1]});
 });
-
-  infoWindow = new google.maps.InfoWindow;
-  
- var userlocation = null;
+infoWindow = new google.maps.InfoWindow;
+  var userlocation = null;
 
   var id;
   if (navigator.geolocation) {
@@ -210,8 +200,6 @@ locations.forEach( (element) =>{
         maximumAge: 0,
         distanceFilter: 1,
       };
-
- 
 
         //var markerobjects = [];
       //foreach loop will check in which marker and convert into object. 
@@ -227,7 +215,7 @@ locations.forEach( (element) =>{
           //This will check how many markers are there in location array
           //latlng = {lat: locations[i][0],  lng: locations[i][1]};
 
-         var questionMarker = 'icon2.png';
+         var questionMarker = 'img/icon2.png';
          var marker = new google.maps.Marker({
            position: latlng,
            title: title,
@@ -248,39 +236,27 @@ locations.forEach( (element) =>{
          var match = locations.indexOf(currentMarker);   
           console.log(match);
                         $(document).ready(function(){  
-    $('a.btn.btn-primary.knapp').text('Answer Question');
 	document.getElementById("myButton").style.background='#22db22';
+	  $('button.btn-primary.knapp').text('Answer Question');
 	
 
 document.getElementById('myButton').onclick = function(){
-   $('#\\#myModal').modal('show');/*
+   $('#\\#myModal').modal('show');
     setTimeout(function(){
-    $('#\\#myModal').modal('hide');
-	
-	   
-    }, 6000);
-	
-  */
-
-
-}
-
-	
+    $('#\\#myModal').modal('hide'); 
+    }, 15000);}	
 });    
-          //var splicedMarker = locations.splice(match, 1);     
-          //console.log(locations); 
-          
-       } else {
-		                        $(document).ready(function(){  
-    $('a.btn.btn-primary.knapp').text('Not avalible');
+//var splicedMarker = locations.splice(match, 1);     
+//console.log(locations); 
+           } else {
+	$(document).ready(function(){  
+    $('button.btn-primary.knapp').text('Not avalible');
 	document.getElementById("myButton").style.background='red';
 	document.getElementById('myButton').onclick = function(){
     alert("Wrong position");
-
-
 }
 });  
-        }
+    }
       });
 
     }, function() {
@@ -302,34 +278,28 @@ document.getElementById('myButton').onclick = function(){
  }
 
 
-$('button1').on('click', function() {
-    $(this).prop('disabled', true);
-});
-
- 
-      jQuery('.button1').click(function() {
-
-	    if (!jQuery(this).hasClass('wrong-answer')) {
+// Tryck på felsvar, adda css class som gör att den blir röd
+jQuery('.button1').click(function() {
+    if (!jQuery(this).hasClass('wrong-answer')) {
     jQuery('.button1').removeClass('wrong-answer');
     jQuery(this).toggleClass('wrong-answer');
   }
-
 });
+// Tryck på rättsvar, adda css class som gör att den blir grön
       jQuery('.button12').click(function() {
-
-	    if (!jQuery(this).hasClass('right-answer')) {
+     if (!jQuery(this).hasClass('right-answer')) {
     jQuery('.button12').removeClass('right-answer');
     jQuery(this).toggleClass('right-answer');
   }
-
 });
 
+
+// Gör att du inte kan trycka i alla frågor samtidigt.
 function DisableButtons()
-{
-    $(".button1").attr("disabled", true);
+{    $(".button1").attr("disabled", true);
 	$(".button12").attr("disabled", true);
 }
-
+// När du har svarat och trycker vill svara på fråga, tabort grön/röd färg så dom blir som nya
 document.getElementById("myButton").addEventListener("click", function(){
  $(".button1").attr("disabled", false);
 	$(".button12").attr("disabled", false);
@@ -338,24 +308,21 @@ document.getElementById("myButton").addEventListener("click", function(){
 });
 
 
-
-
-
+// När man trycker på rätt svar, visa correct, samt göm modalbox
+// När man trycker på Fel svar, visa Incorrect, samt göm modalbox
 function correct() {
     document.getElementById("test1").innerHTML = "Correct";
-	 setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
-	  
-	  
-	
+	 setTimeout(function(){ $('#\\#myModal').modal('hide'); }, 1000);
 }
+
 function incorrect1() {
     document.getElementById("test").innerHTML = "Incorrect";
-	  setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
+	  setTimeout(function(){ $('#\\#myModal').modal('hide'); }, 1000);
 	
 }
 function incorrect2() {
     document.getElementById("test2").innerHTML = "Incorrect";
-	  setTimeout(function(){ $('#\\#myModal').modal('hide');; }, 1000);
+	  setTimeout(function(){ $('#\\#myModal').modal('hide'); }, 1000);
 	
 }
 function incorrect3() {
@@ -364,8 +331,10 @@ function incorrect3() {
 	
 }
 
+
+// När man trycker på rätt svar, så räknar den det.
 $(".startclock").click(function(){
-  var counter = 6;
+  var counter = 16;
   setInterval(function() {
     counter--;
     if (counter >= 0) {
@@ -375,10 +344,9 @@ $(".startclock").click(function(){
     if (counter === 0) {
         clearInterval(counter);
     }
-  }, 1000);
-    
+  }, 1000);   
 });
-
+// När man trycker på rätt svar, så räknar den det.
 count = 0
 counter= function(){
 var counter =
@@ -386,28 +354,20 @@ document.getElementById("counter");
 counter.innerHTML = ++ count;
   }
   
-    var fewSeconds = 7;
+  // När man trycker på Answer question, så blir den disable i 16 sekunder, så man ej ska kunna spamma å få nya modalboxes,samt ändrar text på knappen.
+  var fewSeconds = 16;
 $('#myButton').click(function(){
-    // Ajax request
     var btn = $(this);
     btn.prop('disabled', true);
+      $('button.btn-primary.knapp').text('Checking answer...');
     setTimeout(function(){
         btn.prop('disabled', false);
+		  $('button.btn-primary.knapp').text('Answer Question');
     }, fewSeconds*1000);
 });
-  
-  
-  
-
-  
-/*    
-document.getElementById("myButton").addEventListener("click", myFunction);
-function myFunction (){
-setTimeout(function(){  
- $('#\\#myModal').modal('hide');
-$('#quiz').load(location.href,"");
-
-
- }, 8000);
-}
-*/
+    // Reggar hur många gånger man tryckt på Answer question, visar det som "you reached checkpoint 1"
+  var checkpoints = 0;
+$('#myButton').click(function(){
+ checkpoints += 1;
+        document.getElementById("checkpoints").innerHTML = checkpoints;
+});
